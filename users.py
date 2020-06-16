@@ -8,7 +8,7 @@ sheet = book.add_worksheet()
 row = 0
 col = 0
 # variables
-total_results = 5
+total_results = 100
 fields = "name,gender,dob,email"
 
 # peticion get
@@ -60,7 +60,7 @@ for user in users:
     sheet.write(row, col + 1, name)
     sheet.write(row, col + 2, email)
     sheet.write(row, col + 3, age)
-
-    print("{} {} {} {}".format(gender, name, age, email))
+    # Se imprimen los resultados igual como en el archivo
+    print("{} {} {} {}".format(gender, name, email, age,))
 
 book.close()
