@@ -1,5 +1,13 @@
 import requests
+import xlsxwriter
 
+# generamos libro y hoja de excel
+book = xlsxwriter.Workbook('usuarios.xlsx')
+sheet = book.add_worksheet()
+# columna y fila en 0
+row = 0
+col = 0
+# variables
 total_results = 5
 fields = "name,gender,dob,email"
 
@@ -37,6 +45,22 @@ for res in results['results']:
     """
     users.sort(key=lambda x: x['age'], reverse=True)
 
+sheet.write(row, col, "Genero")
+sheet.write(row, col + 1, "Nombre")
+sheet.write(row, col + 2, "Email")
+sheet.write(row, col + 3, "Edad")
 # se crea excel
 for user in users:
-    print("{} {} {}".format(user['gender'], user['name'], user['age']))
+    name = user['name']
+    age = user['age']
+    gender = user['gender']
+    email = user['email']
+    row += 1
+    sheet.write(row, col, gender)
+    sheet.write(row, col + 1, name)
+    sheet.write(row, col + 2, email)
+    sheet.write(row, col + 3, age)
+
+    print("{} {} {} {}".format(gender, name, age, email))
+
+book.close()
