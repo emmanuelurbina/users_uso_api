@@ -93,5 +93,6 @@ class Users:
         print("Ok")
 
 
-users = Users()
-users.download_users()
+if __name__ == "__main__":
+    users = Users()
+    users.download_users()
